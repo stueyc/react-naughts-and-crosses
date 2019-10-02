@@ -91,30 +91,30 @@ class Square extends React.Component {
       const current = history[this.state.stepNumber];
       const winner = calculateWinner(current.squares);
       
+      const moves = history.map((step, move, his) => {
+        let latest = his[move].latestMove;
+        let col;
+        let row;
+          if (latest % 3 ===0) {
+            col = 1;
+          } else if (latest === 1 || latest === 4 || latest === 7) {
+            col = 2;
+          } else if (latest === 2 || latest === 5 || latest === 8) {
+            col = 3;
+          }
+    
+          if (latest <= 2) {
+            row = 1;
+          } else if (latest <= 5) {
+            row = 2;
+          } else if (latest <= 8) {
+            row = 3;
+          }
 
-
-      let col;
-      let row;
-      if (latestSquare === 0 || 3 || 6) {
-        col = 1;
-      } else if (latestSquare === 1 || 4 || 7) {
-        col = 2;
-      } else if (latestSquare === 2 || 5 || 8) {
-        col = 3;
-      }
-
-      if (latestSquare <= 2) {
-        row = 1;
-      } else if (latestSquare <= 5) {
-        row = 2;
-      } else if (latestSquare <= 8) {
-        row = 3;
-      }
-
-      const moves = history.map((step, move) => {
         const desc = move ?
           'Go to move #' + move + ` (col: ${col}, row: ${row})`:
           'Go to game start';
+          
           return (
             <li key={move}>
               <button onClick={() => this.jumpTo(move)}>{desc}</button>
