@@ -95,31 +95,39 @@ class Square extends React.Component {
         let latest = his[move].latestMove;
         let col;
         let row;
-          if (latest % 3 ===0) {
-            col = 1;
-          } else if (latest === 1 || latest === 4 || latest === 7) {
-            col = 2;
-          } else if (latest === 2 || latest === 5 || latest === 8) {
-            col = 3;
-          }
-    
-          if (latest <= 2) {
-            row = 1;
-          } else if (latest <= 5) {
-            row = 2;
-          } else if (latest <= 8) {
-            row = 3;
-          }
+        if (latest % 3 === 0) {
+          col = 1;
+        } else if (latest === 1 || latest === 4 || latest === 7) {
+          col = 2;
+        } else if (latest === 2 || latest === 5 || latest === 8) {
+          col = 3;
+        }
+  
+        if (latest <= 2) {
+          row = 1;
+        } else if (latest <= 5) {
+          row = 2;
+        } else if (latest <= 8) {
+          row = 3;
+        }
 
         const desc = move ?
-          'Go to move #' + move + ` (col: ${col}, row: ${row})`:
-          'Go to game start';
-          
+        'Go to move #' + move + ` (col: ${col}, row: ${row})`:
+        'Go to game start';
+        
+        if (move === this.state.stepNumber) {
+          return (
+            <li key={move}>
+              <button onClick={() => this.jumpTo(move)} class='bold'>{desc}</button>
+            </li>
+          );
+        } else {        
           return (
             <li key={move}>
               <button onClick={() => this.jumpTo(move)}>{desc}</button>
             </li>
           );
+        }
       });
 
       let status
