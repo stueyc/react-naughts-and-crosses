@@ -19,30 +19,34 @@ class Square extends React.Component {
     renderSquare(i) {
       return (
         <Square
+          key={i}
           value={this.props.squares[i]}
           onClick={() => this.props.onClick(i)}
         />
       );
     }
+    
+    renderRow(x) {
+      const squareArray = [];
+      for (let j=0; j<=2; j++) {
+          squareArray[j] = this.renderSquare(j+x);
+        }
+      return squareArray;
+    }
+    
+    createBoard() {
+      const finalBoard = [];
+      for (let x=0; x<=6; x+=3) {
+        finalBoard.push(<div className='board-row' key={x}>{this.renderRow(x)}
+          </div>);
+      }
+      return finalBoard;
+    }
 
     render() {
       return (
         <div>
-          <div className="board-row">
-            {this.renderSquare(0)}
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(3)}
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(6)}
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
-          </div>
+          {this.createBoard()}
         </div>
       );
     }
@@ -118,7 +122,7 @@ class Square extends React.Component {
         if (move === this.state.stepNumber) {
           return (
             <li key={move}>
-              <button onClick={() => this.jumpTo(move)} class='bold'>{desc}</button>
+              <button onClick={() => this.jumpTo(move)} className='bold'>{desc}</button>
             </li>
           );
         } else {        
