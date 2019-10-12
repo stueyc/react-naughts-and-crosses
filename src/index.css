@@ -4,7 +4,19 @@ body {
   }
   
   ol, ul {
-    padding-left: 30px;
+    padding-left: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+    list-style: none;
+  }
+
+  button {
+    margin: 1px;
+    width: 217px;
+  }
+
+  .toggle {
+    width: 122px;
   }
   
   .board-row:after {
@@ -29,6 +41,7 @@ body {
     font-weight: bold;
     line-height: 34px;
     height: 34px;
+    margin: 0px;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
@@ -51,5 +64,9 @@ body {
   
   .game-info {
     margin-left: 20px;
+  }
+
+  .moveList {
+    margin-top: 10px;
   }
   

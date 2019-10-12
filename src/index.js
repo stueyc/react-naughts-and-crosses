@@ -80,6 +80,7 @@ class Square extends React.Component {
         }]),
         stepNumber: history.length,
         xIsNext: !this.state.xIsNext,
+        descending: false,
       });
     }
 
@@ -87,6 +88,12 @@ class Square extends React.Component {
       this.setState({
         stepNumber: step,
         xIsNext: (step % 2) === 0,
+      });
+    }
+
+    toggle() {
+      this.setState({
+        descending: !this.state.descending,
       });
     }
 
@@ -134,6 +141,13 @@ class Square extends React.Component {
         }
       });
 
+      // Toggle ascending/descending
+      let toggleValue = 'Show descending';
+      if (this.state.descending) {
+        moves.reverse();
+        toggleValue = 'Show ascending';
+      }
+
       let status
       if (winner) {
         status = 'Winner: ' + winner;
@@ -152,6 +166,7 @@ class Square extends React.Component {
           </div>
           <div className="game-info">
             <div>{status}</div>
+            <div className="moveList">Moves: <button onClick={() => this.toggle()} className="toggle">{toggleValue}</button></div>
             <ol>{moves}</ol>
           </div>
         </div>
