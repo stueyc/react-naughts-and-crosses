@@ -159,6 +159,8 @@ class Game extends React.Component {
     if (winner) {
       status = 'Winner: ' + winner[0];
       winningSquares = winner[1];
+    } else if (!current.squares.includes(null)) {
+      status = 'Draw'
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
