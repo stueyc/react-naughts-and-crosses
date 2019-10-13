@@ -48,6 +48,10 @@ body {
     text-align: center;
     width: 34px;
   }
+
+  .highlight {
+    background-color: teal;
+  }
   
   .square:focus {
     outline: none;
